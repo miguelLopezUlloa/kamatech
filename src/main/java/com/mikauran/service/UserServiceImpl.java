@@ -40,8 +40,15 @@ public class UserServiceImpl implements UserService {
 	public void updateUser(User user) {
 		userRepository.save(user);
 	}
-
 	
+	public void updateStatus(long id, User user) {
+		userRepository.save(user);
+	}
+	
+	public void updateByParams(String status, long id, User user) {
+		userRepository.save(user);
+	}
+
 	public void deleteUserById(long id) {
 		userRepository.delete(id);
 	}

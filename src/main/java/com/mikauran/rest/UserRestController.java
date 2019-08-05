@@ -110,6 +110,46 @@ public class UserRestController {
 		return new ResponseEntity<User>(currentUser, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/user/status/{id}", method= RequestMethod.PUT)
+	public ResponseEntity<User> updateStatus(@PathVariable("id") long id, @RequestBody User user) {
+		
+		User currentUser = userService.findById(id);
+		
+		if(currentUser == null){
+			System.out.println("User with id " + id + "not found");
+			new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+		
+		System.out.println("Updating User with id " + id + " with status:" + user.getStatus());
+		
+		currentUser.setStatus(user.getStatus());
+		
+		userService.updateStatus(id, currentUser);
+		
+		return new ResponseEntity<User>(currentUser, HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping(value = "/user/{status}/{id}", method= RequestMethod.PUT)
+	public ResponseEntity<User> updateByParams(@PathVariable("status") String status, 
+											   @PathVariable("id") long id, @RequestBody User user) {
+		
+		User currentUser = userService.findById(id);
+		
+		if(currentUser == null){
+			System.out.println("User with id " + id + "not found");
+			new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+		
+		System.out.println("Updating User with id " + id + " with status:" + status);
+		
+		currentUser.setStatus(status);
+		
+		userService.updateByParams(status, id, currentUser);
+		
+		return new ResponseEntity<User>(currentUser, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/user/{id}", method= RequestMethod.DELETE)
 	public ResponseEntity<User> deleteUser(@PathVariable("id") long id){
 		System.out.println("Fetching and Deleting User with id " + id);
