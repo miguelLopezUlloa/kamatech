@@ -3,7 +3,7 @@ App.controller('UserController', ['$scope','UserService',
 	var self = this;
 	self.user={id:null,userName:'', last_name:'', middle_name:'', dob:'', doe:'' , address:'', email:'', status:''};
 	self.users=[];
-	self.active = false;
+	self.active = 'ACTIVE';
 
 	self.fetchAllUsers = function(){
 		UserService.fetchAllUsers()
@@ -91,9 +91,11 @@ App.controller('UserController', ['$scope','UserService',
 	self.checkStatus = function(){	
 
 		if(!self.active){
-        	console.log('Check Box cambio' + self.active);
+			console.log('Check Box cambio' + self.active);
+			self.active = 'INACTIVE';
 		}else{
-        console.log('Check Box NO cambio' + self.active);
+		console.log('Check Box NO cambio' + self.active);
+			self.active = 'ACTIVE';
     	}
 
 	}

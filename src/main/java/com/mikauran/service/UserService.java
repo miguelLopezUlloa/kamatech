@@ -14,6 +14,10 @@ public interface UserService {
 	
 	void updateUser(User user);
 	
+	void updateStatus(long id, User user);
+	
+	void updateByParams(String status, long id, User user);
+	
 	void deleteUserById(long id);
 	
 	List<User> findAllUsers();

@@ -168,8 +168,8 @@
 				<div class="form-group col-md-12">
 					<label class="col-md-2 control-label" for="file">Status</label>
 					<input type="checkbox" id="status" name="status" class="custom-control-input" 
-						    ng-change="ctrl.checkStatus()" ng-model="ACTIVE">
-						    {{ ctrl.active }}
+						    ng-change="ctrl.checkStatus()" ng-model="ctrl.user.status" ng-true-value="'ACTIVE'" ng-false-value="'INACTIVE'">
+						    {{ ctrl.user.status }}
 				</div>
 				
 				<div class="row">
